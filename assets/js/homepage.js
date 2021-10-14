@@ -4,6 +4,21 @@ var nameInputEl = document.querySelector("#username");
 var repoContainerEl = document.querySelector("#repos-container");
 var repoSearchTerm = document.querySelector("#repo-search-term");
 
+// FORM FUNCTION
+var formSubmitHandler = function (event) {
+    event.preventDefault();
+    // get value from input element
+    var username = nameInputEl.value.trim();
+
+    if (username) {
+        getUserRepos(username);
+        // clear old content
+        repoContainerEl.textContent = "";
+        nameInputEl.value = "";
+    } else {
+        alert("Please enter a GitHub username");
+    }
+};
 
 // GET USER REPOS FUNCTION
 var getUserRepos = function (user) {
@@ -26,22 +41,6 @@ var getUserRepos = function (user) {
             // notice this .catch() getting chained onto the end of the .then()
             alert("Unable to connect to GitHub");
         });
-};
-
-// FORM FUNCTION
-var formSubmitHandler = function (event) {
-    event.preventDefault();
-    // get value from input element
-    var username = nameInputEl.value.trim();
-
-    if (username) {
-        getUserRepos(username);
-        // clear old content
-        repoContainerEl.textContent = "";
-        nameInputEl.value = "";
-    } else {
-        alert("Please enter a GitHub username");
-    }
 };
 
 // DISPLAY REPOS FUNCTION
