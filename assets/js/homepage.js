@@ -92,7 +92,7 @@ var getFeaturedRepos = function (language) {
                 displayRepos(data.items, language);
             });
         } else {
-            alert("Error: GitHub User Not Found");
+            alert("Error: " + response.statusText);
         }
     });
 };
